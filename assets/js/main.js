@@ -41,20 +41,32 @@ function convertPokemonToHtml(pokemon) {
 }
 
 const pokemonOl = document.getElementById('pokemonList')
+const loadMoreButton = document.getElementById('loadMoreButton')
+const limit = 6
+let offset = 0
 
-pokeApi.getPokemons().then((pokemonList = []) => {
+function loadPokemonItems(offset, limit) {
+    pokeApi.getPokemons(offset, limit).then((pokemonList = []) => {
 
-    //tudo abaixo em uma linha
-    const newHtml = pokemonList.map(convertPokemonToHtml).join('')
-    pokemonOl.innerHTML = newHtml
-    //forma passo a passo
+        //tudo abaixo em uma linha
+        const newHtml = pokemonList.map(convertPokemonToHtml).join('')
+        pokemonOl.innerHTML += newHtml
+        //forma passo a passo
 
-    // //vai receber cada item da pokemonList transformar em html e depois adicionar tudo na lista
-    // const newList = pokemonList.map(convertPokemonToHtml)
+        // //vai receber cada item da pokemonList transformar em html e depois adicionar tudo na lista
+        // const newList = pokemonList.map(convertPokemonToHtml)
 
-    // //vai pegar todas as listas e transformar em um html
-    // const newHtml = newList.join('')
+        // //vai pegar todas as listas e transformar em um html
+        // const newHtml = newList.join('')
 
-    // //vai pegar o html gerado e adicionar no documento html
-    // pokemonOl.innerHTML += newHtml
+        // //vai pegar o html gerado e adicionar no documento html
+        // pokemonOl.innerHTML += newHtml
+    })
+}
+
+loadPokemonItems(offset, limit)
+
+loadMoreButton.addEventListener('click', () => {
+    offset += 6
+    loadPokemonItems(offset, limit)
 })

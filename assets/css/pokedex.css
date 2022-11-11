@@ -126,6 +126,26 @@
     text-align: center;
 }
 
+.pagination {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    padding: 1rem;
+}
+
+#loadMoreButton {
+    background-color: #6c79db;
+    border: none;
+    color: #fff;
+    border-radius: 1rem;
+    padding: 0.75rem 1rem;
+    margin: 0.25rem 0;
+    font-size: .75rem;
+}
+
 @media screen and (width >=992px) {
     .content {
         max-width: 992px;
